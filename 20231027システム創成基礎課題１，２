@@ -1,0 +1,42 @@
+#include<stdio.h>
+int main(void)
+{
+	int a;
+	printf("数字を入力してください:");
+	scanf_s("%d", &a);
+
+	if (a % 2 == 1)
+	{
+		printf("奇数\n");
+	}
+
+	else
+	{
+		printf("偶数\n");
+
+	}
+
+	return 0;
+}
+
+
+#include<stdio.h>
+int main(void)
+{
+	int a;
+	printf("数字を入力してください:");
+	scanf_s("%d", &a);
+
+	if (a % 2 == 1)
+	{
+		printf("奇数\n");
+	}
+
+	else
+	{
+		printf("偶数\n");
+
+	}
+
+	return 0;
+}
