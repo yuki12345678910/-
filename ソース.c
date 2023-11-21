@@ -1,51 +1,36 @@
-#include <stdio.h>
-#include <ctype.h>
+#include<stdio.h>
 
-//大文字　-> 小文字への変換関数
-char toLower(char c) {
-	if (isupper(c)) {
-		return tolower(c);
+int isUpperCase(char c) {
+	//大文字かどうか判定する関数
+	if (c >= 'A' && c <= 'Z') {
+		return 1;//大文字の場合、1を返す
 	}
-	return c;
-}
-
-// 小文字 -> 大文字への変換関数
-char toUpper(char c) {
-	if (islower(c)) {
-		return toupper(c);
+	else {
+		return 0;//大文字でない場合、0を返す
 	}
-	return c;
 }
 
 int main() {
-	char input[100];
+	char str[100];
+	int i, flag;
 
 	printf("文字列を入力してください:");
-	fgets(input, sizeof(input), stdin);
+	fgets(str, sizeof(str), stdin);//文字列を入力
 
-int option;
-	printf("処理のオプションを選択してください:\n1.すべての文字を小文字に変換\n2.すべての文字を大文字に変換\nオプション:");
-	scanf_s("%d", &option);
+	flag = 0;//大文字が含まれているかどうかのフラグ
 
-	printf("\n変換後の文字列:");
-	int i = 0;
-	char convertedChar;
-	while (input[i] != '\0') {
-		switch (option) {
-		case 1:
-			convertedChar =
-				toLower(input[i]);
+	for (i = 0; str[i] != '\0'; i++) {
+		if (isUpperCase(str[i])) {
+			flag = 1;//大文字が含まれている場合、フラグを立てる
 			break;
-		case2:
-			convertedChar =
-				toUpper(input[i]);
-			break;
-		  default:
-			printf("無効なオプションが選択されました。\n");
-			return 0;
 		}
-		printf("%c", convertedChar);
-		i++;
+	}
+
+	if (flag) {
+		printf("大文字が含まれています。\n");
+	}
+	else {
+		printf("大文字が含まれていません。\n");
 	}
 
 	return 0;
