@@ -1,37 +1,39 @@
-#include<stdio.h>
+#include <stdio.h>
+#include<string.h>
+#include<ctype.h>
 
-int isUpperCase(char c) {
-	//大文字かどうか判定する関数
-	if (c >= 'A' && c <= 'Z') {
-		return 1;//大文字の場合、1を返す
-	}
-	else {
-		return 0;//大文字でない場合、0を返す
-	}
-}
+int main(void)
+{
+    char str[100];
+    int aaa = 0, bbb = 0, ccc = 0;
+    printf("文字列を入力してください:");
+    fgets(str, sizeof(str), stdin);
+    int length = strlen(str);
 
-int main() {
-	char str[100];
-	int i, flag;
+    //改行文字を除去
+    if (length > 0 && str[length - 1] == '\n') {
+        str[length - 1] = '\0';
+        length--;
+    }
 
-	printf("文字列を入力してください:");
-	fgets(str, sizeof(str), stdin);//文字列を入力
+    if (8 <= length && 16 >= length) {
+        for (int i = 0; i < length; i++) {
+            if ('a' <= str[i] && 'z' >= str[i])aaa++;
+            if ('A' <= str[i] && 'Z' >= str[i])bbb++;
+            if (!isalpha((unsigned char)str[i]))ccc++;
+            }
+    }
+    else {
+        printf("8文字以上16文字以下にしてください\n");
+        return 1;
+    }
 
-	flag = 0;//大文字が含まれているかどうかのフラグ
-
-	for (i = 0; str[i] != '\0'; i++) {
-		if (isUpperCase(str[i])) {
-			flag = 1;//大文字が含まれている場合、フラグを立てる
-			break;
-		}
-	}
-
-	if (flag) {
-		printf("大文字が含まれています。\n");
-	}
-	else {
-		printf("大文字が含まれていません。\n");
-	}
-
-	return 0;
+    if (aaa >= 1 && bbb >= 1 && ccc >= 1)
+    printf("パスワードを設定しました\n");
+    else {
+        if (aaa == 0)printf("小文字を含んでください\n");
+        if (bbb == 0)printf("大文字を含んでください\n");
+        if (ccc == 0)printf("その他の文字を含んでください\n");
+    }
+    return 0;
 }
